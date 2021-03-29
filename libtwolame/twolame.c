@@ -444,23 +444,23 @@ static void scale_and_mix_samples(twolame_options * glopts)
     if (glopts->scale != 0 && glopts->scale != 1.0) {
         if (glopts->num_channels_in == 2)
             for (i = 0; i < num_samples; ++i) {
-                glopts->buffer[0][i] *= glopts->scale;
-                glopts->buffer[1][i] *= glopts->scale;
+                glopts->buffer[0][i] = (short)((FLOAT)glopts->buffer[0][i] * glopts->scale);
+                glopts->buffer[1][i] = (short)((FLOAT)glopts->buffer[1][i] * glopts->scale);
             }
         else
             for (i = 0; i < num_samples; ++i)
-                glopts->buffer[0][i] *= glopts->scale;
+                glopts->buffer[0][i] = (short)((FLOAT)glopts->buffer[0][i] * glopts->scale);
     }
     // apply scaling to channel 0 (left)
     if (glopts->scale_left != 0 && glopts->scale_left != 1.0) {
         for (i = 0; i < num_samples; ++i) {
-            glopts->buffer[0][i] *= glopts->scale_left;
+            glopts->buffer[0][i] = (short)((FLOAT)glopts->buffer[0][i] * glopts->scale_left);
         }
     }
     // apply scaling to channel 1 (right)
     if (glopts->scale_right != 0 && glopts->scale_right != 1.0) {
         for (i = 0; i < num_samples; ++i) {
-            glopts->buffer[1][i] *= glopts->scale_right;
+            glopts->buffer[1][i] = (short)((FLOAT)glopts->buffer[1][i] * glopts->scale_right);
         }
     }
     // Downmix to Mono if 2 channels in and 1 channel out
