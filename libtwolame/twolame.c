@@ -55,7 +55,7 @@
   Returns NULL if unsuccessful (can't allocate memory)
   Otherwise returns pointer to memory block
 */
-twolame_options *twolame_init(void)
+TL_API twolame_options *twolame_init(void)
 {
     twolame_options *newoptions = NULL;
 
@@ -184,7 +184,7 @@ static int init_header_info(twolame_options * glopts)
  * make sense.
  */
 
-int twolame_init_params(twolame_options * glopts)
+TL_API int twolame_init_params(twolame_options * glopts)
 {
 
     if (glopts->twolame_init) {
@@ -674,7 +674,7 @@ static int encode_frame(twolame_options * glopts, bit_stream * bs)
   mp2fill_size - how much mpeg data the library has put into the mp2buffer
 */
 
-int twolame_encode_buffer(twolame_options * glopts,
+TL_API int twolame_encode_buffer(twolame_options * glopts,
                           const short int leftpcm[],
                           const short int rightpcm[],
                           int num_samples, unsigned char *mp2buffer, int mp2buffer_size)
@@ -736,7 +736,7 @@ int twolame_encode_buffer(twolame_options * glopts,
 }
 
 
-int twolame_encode_buffer_interleaved(twolame_options * glopts,
+TL_API int twolame_encode_buffer_interleaved(twolame_options * glopts,
                                       const short int pcm[],
                                       int num_samples, unsigned char *mp2buffer, int mp2buffer_size)
 {
@@ -824,7 +824,7 @@ static void float32_to_short(const float in[], short out[], int num_samples, int
   mp2fill_size - how much mpeg data the library has put into the mp2buffer
 */
 
-int twolame_encode_buffer_float32(twolame_options * glopts,
+TL_API int twolame_encode_buffer_float32(twolame_options * glopts,
                                   const float leftpcm[],
                                   const float rightpcm[],
                                   int num_samples, unsigned char *mp2buffer, int mp2buffer_size)
@@ -943,7 +943,7 @@ int twolame_encode_buffer_float32_interleaved(twolame_options * glopts,
 
 
 
-int twolame_encode_flush(twolame_options * glopts, unsigned char *mp2buffer, int mp2buffer_size)
+TL_API int twolame_encode_flush(twolame_options * glopts, unsigned char *mp2buffer, int mp2buffer_size)
 {
     bit_stream *mybs = NULL;
     int mp2_size = 0;
@@ -976,7 +976,7 @@ int twolame_encode_flush(twolame_options * glopts, unsigned char *mp2buffer, int
 
 
 
-void twolame_close(twolame_options ** glopts)
+TL_API void twolame_close(twolame_options ** glopts)
 {
     twolame_options *opts = NULL;
 

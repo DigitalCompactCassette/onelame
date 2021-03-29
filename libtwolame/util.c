@@ -33,7 +33,7 @@
 
 // Return string containg version number
 // of this library
-const char *get_twolame_version(void)
+TL_API const char *get_twolame_version(void)
 {
     static const char *str = PACKAGE_VERSION;
 
@@ -42,7 +42,7 @@ const char *get_twolame_version(void)
 
 // Return string containg version number
 // of this library
-const char *get_twolame_url(void)
+TL_API const char *get_twolame_url(void)
 {
     static const char *str = PACKAGE_URL;
 
@@ -146,7 +146,7 @@ int twolame_get_version_for_samplerate(long sample_rate)
 
 
 // Get the number of bytes per frame, for current settings
-int twolame_get_framelength(twolame_options * glopts)
+TL_API int twolame_get_framelength(twolame_options * glopts)
 {
     int bytes = 144 * (glopts->bitrate * 1000) / glopts->samplerate_out;
 
@@ -169,7 +169,7 @@ int twolame_index_bitrate(int mpeg_ver, int index)
 
 // Print the library version and
 //  encoder parameter settings to STDERR
-void twolame_print_config(twolame_options * glopts)
+TL_API void twolame_print_config(twolame_options * glopts)
 {
     FILE *fd = stderr;
 

@@ -37,7 +37,7 @@
 
 /*********************************************/
 
-int twolame_set_mode(twolame_options * glopts, TWOLAME_MPEG_mode mode)
+TL_API int twolame_set_mode(twolame_options * glopts, TWOLAME_MPEG_mode mode)
 {
     if (mode < TWOLAME_AUTO_MODE || mode > TWOLAME_MONO) {
         fprintf(stderr, "invalid mode %i\n", mode);
@@ -47,12 +47,12 @@ int twolame_set_mode(twolame_options * glopts, TWOLAME_MPEG_mode mode)
     return (0);
 }
 
-TWOLAME_MPEG_mode twolame_get_mode(twolame_options * glopts)
+TL_API TWOLAME_MPEG_mode twolame_get_mode(twolame_options * glopts)
 {
     return (glopts->mode);
 }
 
-const char *twolame_get_mode_name(twolame_options * glopts)
+TL_API const char *twolame_get_mode_name(twolame_options * glopts)
 {
     static const char *mode_name[6] =
     { "Auto", "Stereo", "J-Stereo", "Dual-Channel", "Mono", "Illegal Mode" };
@@ -64,31 +64,31 @@ const char *twolame_get_mode_name(twolame_options * glopts)
 }
 
 
-int twolame_set_psymodel(twolame_options * glopts, int psymodel)
+TL_API int twolame_set_psymodel(twolame_options * glopts, int psymodel)
 {
     glopts->psymodel = psymodel;
     return (0);
 }
 
-int twolame_get_psymodel(twolame_options * glopts)
+TL_API int twolame_get_psymodel(twolame_options * glopts)
 {
     return (glopts->psymodel);
 }
 
 
 /* number of channels on the input stream */
-int twolame_set_num_channels(twolame_options * glopts, int num_channels)
+TL_API int twolame_set_num_channels(twolame_options * glopts, int num_channels)
 {
     glopts->num_channels_in = num_channels;
     return 0;
 }
 
-int twolame_get_num_channels(twolame_options * glopts)
+TL_API int twolame_get_num_channels(twolame_options * glopts)
 {
     return (glopts->num_channels_in);
 }
 
-int twolame_set_scale(twolame_options * glopts, float scale)
+TL_API int twolame_set_scale(twolame_options * glopts, float scale)
 {
     if (scale < 0) {
         fprintf(stderr, "invalid scaling amount %f\n", scale);
@@ -98,12 +98,12 @@ int twolame_set_scale(twolame_options * glopts, float scale)
     return 0;
 }
 
-float twolame_get_scale(twolame_options * glopts)
+TL_API float twolame_get_scale(twolame_options * glopts)
 {
     return (glopts->scale);
 }
 
-int twolame_set_scale_left(twolame_options * glopts, float scale)
+TL_API int twolame_set_scale_left(twolame_options * glopts, float scale)
 {
     if (scale < 0) {
         fprintf(stderr, "invalid scaling amount %f\n", scale);
@@ -113,12 +113,12 @@ int twolame_set_scale_left(twolame_options * glopts, float scale)
     return 0;
 }
 
-float twolame_get_scale_left(twolame_options * glopts)
+TL_API float twolame_get_scale_left(twolame_options * glopts)
 {
     return (glopts->scale_left);
 }
 
-int twolame_set_scale_right(twolame_options * glopts, float scale)
+TL_API int twolame_set_scale_right(twolame_options * glopts, float scale)
 {
     if (scale < 0) {
         fprintf(stderr, "invalid scaling amount %f\n", scale);
@@ -128,60 +128,60 @@ int twolame_set_scale_right(twolame_options * glopts, float scale)
     return 0;
 }
 
-float twolame_get_scale_right(twolame_options * glopts)
+TL_API float twolame_get_scale_right(twolame_options * glopts)
 {
     return (glopts->scale_right);
 }
 
 
-int twolame_set_in_samplerate(twolame_options * glopts, int samplerate)
+TL_API int twolame_set_in_samplerate(twolame_options * glopts, int samplerate)
 {
     glopts->samplerate_in = samplerate;
     return (0);
 }
 
-int twolame_get_in_samplerate(twolame_options * glopts)
+TL_API int twolame_get_in_samplerate(twolame_options * glopts)
 {
     return (glopts->samplerate_in);
 }
 
-int twolame_set_out_samplerate(twolame_options * glopts, int samplerate)
+TL_API int twolame_set_out_samplerate(twolame_options * glopts, int samplerate)
 {
     glopts->samplerate_out = samplerate;
     return (0);
 }
 
-int twolame_get_out_samplerate(twolame_options * glopts)
+TL_API int twolame_get_out_samplerate(twolame_options * glopts)
 {
     return (glopts->samplerate_out);
 }
 
-int twolame_set_brate(twolame_options * glopts, int bitrate)
+TL_API int twolame_set_brate(twolame_options * glopts, int bitrate)
 {
     glopts->bitrate = bitrate;
     return (0);
 }
 
-int twolame_get_brate(twolame_options * glopts)
+TL_API int twolame_get_brate(twolame_options * glopts)
 {
     return (glopts->bitrate);
 }
 
 
 /* Because the LAME API isn't always the best way ;) */
-int twolame_set_bitrate(twolame_options * glopts, int bitrate)
+TL_API int twolame_set_bitrate(twolame_options * glopts, int bitrate)
 {
     glopts->bitrate = bitrate;
     return (0);
 }
 
-int twolame_get_bitrate(twolame_options * glopts)
+TL_API int twolame_get_bitrate(twolame_options * glopts)
 {
     return (glopts->bitrate);
 }
 
 
-int twolame_set_emphasis(twolame_options * glopts, TWOLAME_Emphasis emphasis)
+TL_API int twolame_set_emphasis(twolame_options * glopts, TWOLAME_Emphasis emphasis)
 {
     if (emphasis != TWOLAME_EMPHASIS_N &&
             emphasis != TWOLAME_EMPHASIS_5 && emphasis != TWOLAME_EMPHASIS_C)
@@ -190,12 +190,12 @@ int twolame_set_emphasis(twolame_options * glopts, TWOLAME_Emphasis emphasis)
     return (0);
 }
 
-TWOLAME_Emphasis twolame_get_emphasis(twolame_options * glopts)
+TL_API TWOLAME_Emphasis twolame_get_emphasis(twolame_options * glopts)
 {
     return (glopts->emphasis);
 }
 
-int twolame_set_error_protection(twolame_options * glopts, int error_protection)
+TL_API int twolame_set_error_protection(twolame_options * glopts, int error_protection)
 {
     if (error_protection)
         glopts->error_protection = TRUE;
@@ -204,12 +204,12 @@ int twolame_set_error_protection(twolame_options * glopts, int error_protection)
     return (0);
 }
 
-int twolame_get_error_protection(twolame_options * glopts)
+TL_API int twolame_get_error_protection(twolame_options * glopts)
 {
     return (glopts->error_protection);
 }
 
-int twolame_set_copyright(twolame_options * glopts, int copyright)
+TL_API int twolame_set_copyright(twolame_options * glopts, int copyright)
 {
     if (copyright)
         glopts->copyright = TRUE;
@@ -218,12 +218,12 @@ int twolame_set_copyright(twolame_options * glopts, int copyright)
     return (0);
 }
 
-int twolame_get_copyright(twolame_options * glopts)
+TL_API int twolame_get_copyright(twolame_options * glopts)
 {
     return (glopts->copyright);
 }
 
-int twolame_set_original(twolame_options * glopts, int original)
+TL_API int twolame_set_original(twolame_options * glopts, int original)
 {
     if (original)
         glopts->original = TRUE;
@@ -232,12 +232,12 @@ int twolame_set_original(twolame_options * glopts, int original)
     return (0);
 }
 
-int twolame_get_original(twolame_options * glopts)
+TL_API int twolame_get_original(twolame_options * glopts)
 {
     return (glopts->original);
 }
 
-int twolame_set_extension(twolame_options * glopts, int extension)
+TL_API int twolame_set_extension(twolame_options * glopts, int extension)
 {
     if (extension)
         glopts->private_extension = TRUE;
@@ -246,12 +246,12 @@ int twolame_set_extension(twolame_options * glopts, int extension)
     return (0);
 }
 
-int twolame_get_extension(twolame_options * glopts)
+TL_API int twolame_get_extension(twolame_options * glopts)
 {
     return (glopts->private_extension);
 }
 
-int twolame_set_padding(twolame_options * glopts, TWOLAME_Padding padding)
+TL_API int twolame_set_padding(twolame_options * glopts, TWOLAME_Padding padding)
 {
     if (padding)
         glopts->padding = TRUE;
@@ -261,12 +261,12 @@ int twolame_set_padding(twolame_options * glopts, TWOLAME_Padding padding)
     return (0);
 }
 
-TWOLAME_Padding twolame_get_padding(twolame_options * glopts)
+TL_API TWOLAME_Padding twolame_get_padding(twolame_options * glopts)
 {
     return (glopts->padding);
 }
 
-int twolame_set_VBR(twolame_options * glopts, int vbr)
+TL_API int twolame_set_VBR(twolame_options * glopts, int vbr)
 {
     if (vbr)
         glopts->vbr = TRUE;
@@ -275,12 +275,12 @@ int twolame_set_VBR(twolame_options * glopts, int vbr)
     return (0);
 }
 
-int twolame_get_VBR(twolame_options * glopts)
+TL_API int twolame_get_VBR(twolame_options * glopts)
 {
     return (glopts->vbr);
 }
 
-int twolame_set_VBR_level(twolame_options * glopts, float level)
+TL_API int twolame_set_VBR_level(twolame_options * glopts, float level)
 {
     // Limit is -50 to 50, but useful range is -10 to 10
     if (fabs(level) > 50.0)
@@ -290,23 +290,23 @@ int twolame_set_VBR_level(twolame_options * glopts, float level)
     return (0);
 }
 
-float twolame_get_VBR_level(twolame_options * glopts)
+TL_API float twolame_get_VBR_level(twolame_options * glopts)
 {
     return (glopts->vbrlevel);
 }
 
-int twolame_set_ATH_level(twolame_options * glopts, float level)
+TL_API int twolame_set_ATH_level(twolame_options * glopts, float level)
 {
     glopts->athlevel = level;
     return (0);
 }
 
-float twolame_get_ATH_level(twolame_options * glopts)
+TL_API float twolame_get_ATH_level(twolame_options * glopts)
 {
     return (glopts->athlevel);
 }
 
-int twolame_set_quick_mode(twolame_options * glopts, int quickmode)
+TL_API int twolame_set_quick_mode(twolame_options * glopts, int quickmode)
 {
     if (quickmode)
         glopts->quickmode = TRUE;
@@ -315,24 +315,24 @@ int twolame_set_quick_mode(twolame_options * glopts, int quickmode)
     return (0);
 }
 
-int twolame_get_quick_mode(twolame_options * glopts)
+TL_API int twolame_get_quick_mode(twolame_options * glopts)
 {
     return (glopts->quickmode);
 }
 
-int twolame_set_quick_count(twolame_options * glopts, int quickcount)
+TL_API int twolame_set_quick_count(twolame_options * glopts, int quickcount)
 {
     glopts->quickcount = quickcount;
     return (0);
 }
 
-int twolame_get_quick_count(twolame_options * glopts)
+TL_API int twolame_get_quick_count(twolame_options * glopts)
 {
     return (glopts->quickcount);
 }
 
 
-int twolame_set_verbosity(twolame_options * glopts, int verbosity)
+TL_API int twolame_set_verbosity(twolame_options * glopts, int verbosity)
 {
     if (verbosity < 0 || verbosity > 10) {
         fprintf(stderr, "invalid verbosity level %i\n", verbosity);
@@ -342,23 +342,23 @@ int twolame_set_verbosity(twolame_options * glopts, int verbosity)
     return (0);
 }
 
-int twolame_get_verbosity(twolame_options * glopts)
+TL_API int twolame_get_verbosity(twolame_options * glopts)
 {
     return (glopts->verbosity);
 }
 
-int twolame_set_VBR_max_bitrate_kbps(twolame_options * glopts, int bitrate)
+TL_API int twolame_set_VBR_max_bitrate_kbps(twolame_options * glopts, int bitrate)
 {
     glopts->vbr_max_bitrate = bitrate;
     return (0);
 }
 
-int twolame_get_VBR_max_bitrate_kbps(twolame_options * glopts)
+TL_API int twolame_get_VBR_max_bitrate_kbps(twolame_options * glopts)
 {
     return (glopts->vbr_max_bitrate);
 }
 
-int twolame_set_num_ancillary_bits(twolame_options * glopts, int num)
+TL_API int twolame_set_num_ancillary_bits(twolame_options * glopts, int num)
 {
     if (num < 0)
         return (-1);
@@ -366,12 +366,12 @@ int twolame_set_num_ancillary_bits(twolame_options * glopts, int num)
     return (0);
 }
 
-int twolame_get_num_ancillary_bits(twolame_options * glopts)
+TL_API int twolame_get_num_ancillary_bits(twolame_options * glopts)
 {
     return (glopts->num_ancillary_bits);
 }
 
-int twolame_set_energy_levels(twolame_options * glopts, int energylevels)
+TL_API int twolame_set_energy_levels(twolame_options * glopts, int energylevels)
 {
     if (energylevels) {
         glopts->do_energy_levels = TRUE;
@@ -383,12 +383,12 @@ int twolame_set_energy_levels(twolame_options * glopts, int energylevels)
 }
 
 
-int twolame_get_energy_levels(twolame_options * glopts)
+TL_API int twolame_get_energy_levels(twolame_options * glopts)
 {
     return (glopts->do_energy_levels);
 }
 
-int twolame_set_version(twolame_options * glopts, TWOLAME_MPEG_version version)
+TL_API int twolame_set_version(twolame_options * glopts, TWOLAME_MPEG_version version)
 {
     if (version != 0 && version != 1)
         return (-1);
@@ -396,17 +396,17 @@ int twolame_set_version(twolame_options * glopts, TWOLAME_MPEG_version version)
     return (0);
 }
 
-TWOLAME_MPEG_version twolame_get_version(twolame_options * glopts)
+TL_API TWOLAME_MPEG_version twolame_get_version(twolame_options * glopts)
 {
     return (glopts->version);
 }
 
-const char *twolame_get_version_name(twolame_options * glopts)
+TL_API const char *twolame_get_version_name(twolame_options * glopts)
 {
     return twolame_mpeg_version_name(glopts->version);
 }
 
-int twolame_set_freeformat(twolame_options * glopts, int freef)
+TL_API int twolame_set_freeformat(twolame_options * glopts, int freef)
 {
     if (freef) {
         glopts->freeformat = TRUE;
@@ -427,7 +427,7 @@ int twolame_set_freeformat(twolame_options * glopts, int freef)
 Supporting DAB requires the front-end to buffer at least two mp2 frames.
 However given this handling, DAB seems to work just fine. So I removed the previous warning message.
 */
-int twolame_set_DAB(twolame_options * glopts, int dab)
+TL_API int twolame_set_DAB(twolame_options * glopts, int dab)
 {
     if (dab)
         glopts->do_dab = TRUE;
@@ -436,12 +436,12 @@ int twolame_set_DAB(twolame_options * glopts, int dab)
     return (0);
 }
 
-int twolame_get_DAB(twolame_options * glopts)
+TL_API int twolame_get_DAB(twolame_options * glopts)
 {
     return (glopts->do_dab);
 }
 
-int twolame_set_DAB_xpad_length(twolame_options * glopts, int length)
+TL_API int twolame_set_DAB_xpad_length(twolame_options * glopts, int length)
 {
     if (length < 0)
         return (-1);
@@ -449,12 +449,12 @@ int twolame_set_DAB_xpad_length(twolame_options * glopts, int length)
     return (0);
 }
 
-int twolame_get_DAB_xpad_length(twolame_options * glopts)
+TL_API int twolame_get_DAB_xpad_length(twolame_options * glopts)
 {
     return (glopts->dab_xpad_len);
 }
 
-int twolame_set_DAB_crc_length(twolame_options * glopts, int length)
+TL_API int twolame_set_DAB_crc_length(twolame_options * glopts, int length)
 {
     if (length < 0)
         return (-1);
@@ -463,7 +463,7 @@ int twolame_set_DAB_crc_length(twolame_options * glopts, int length)
     return (0);
 }
 
-int twolame_set_DAB_scf_crc_length(twolame_options * glopts)
+TL_API int twolame_set_DAB_scf_crc_length(twolame_options * glopts)
 {
     if (glopts->version == TWOLAME_MPEG2) {
         glopts->dab_crc_len = 4;
@@ -481,12 +481,12 @@ int twolame_set_DAB_scf_crc_length(twolame_options * glopts)
     return (0);
 }
 
-int twolame_get_DAB_crc_length(twolame_options * glopts)
+TL_API int twolame_get_DAB_crc_length(twolame_options * glopts)
 {
     return (glopts->dab_crc_len);
 }
 
-int twolame_set_DAB_scf_crc(twolame_options * glopts,
+TL_API int twolame_set_DAB_scf_crc(twolame_options * glopts,
                             unsigned char *mp2buffer,
                             int mp2buffer_size)
 {
