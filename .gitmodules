@@ -1,0 +1,4 @@
+[submodule "wingetopt"]
+	path = wingetopt
+	url = https://github.com/DigitalCompactCassette/wingetopt.git
+	branch = master
