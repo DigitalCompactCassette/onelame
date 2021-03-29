@@ -19,10 +19,17 @@
  *
  */
 
+#ifdef WIN32
+// VS2010 doesn't have snprintf. _snprintf is not fully compliant but will
+// do in our case
+#define snprintf _snprintf
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifndef WIN32
 #include <unistd.h>
+#endif
 #include <getopt.h>
 
 #include <twolame.h>
@@ -648,20 +655,19 @@ static SNDFILE *open_input_sndfile(const char *filename, SF_INFO * sfinfo)
 */
 static char *format_duration_string(SF_INFO * sfinfo, char *string, int string_size)
 {
-    float seconds = 0.0f;
-    int minutes = 0;
-
-    if (sfinfo->frames == 0 || sfinfo->samplerate == 0) {
+    if (sfinfo->frames <= 0 || sfinfo->samplerate == 0) {
         snprintf(string, string_size, "Unknown");
     } else {
+        double seconds = 0.0f;
+        unsigned minutes;
 
         // Calculate the number of minutes and seconds
-        seconds = sfinfo->frames / sfinfo->samplerate;
-        minutes = (seconds / 60);
-        seconds -= (minutes * 60);
+        seconds = (double)sfinfo->frames / (double)sfinfo->samplerate;
+        minutes = (unsigned)seconds / 60;
+        seconds -= (double)minutes * 60.0;
 
         // Create a string out of it
-        snprintf(string, string_size, "%imin %1.1fsec", minutes, seconds);
+        snprintf(string, string_size, "%umin %1.1lfsec", minutes, seconds);
     }
     return string;
 }
@@ -735,7 +741,7 @@ int main(int argc, char **argv)
 
     // Calculate the size and number of frames we are going to encode
     if (sfinfo.frames && !stdin_input)
-        total_frames = (sfinfo.frames -1) / TWOLAME_SAMPLES_PER_FRAME +1;
+        total_frames = 1 + ((unsigned)sfinfo.frames -1) / TWOLAME_SAMPLES_PER_FRAME;
     else
         total_frames = 0;
 
@@ -779,7 +785,7 @@ int main(int argc, char **argv)
 
 
     // Now do the reading/encoding/writing
-    while ((samples_read = sf_read_short(inputfile, pcmaudio, audioReadSize)) > 0) {
+    while ((samples_read = (int)sf_read_short(inputfile, pcmaudio, audioReadSize)) > 0) {
         int bytes_out = 0;
 
         // Calculate the number of samples we have (per channel)
