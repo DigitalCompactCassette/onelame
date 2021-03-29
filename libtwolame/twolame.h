@@ -228,7 +228,7 @@ TL_API int twolame_encode_buffer_interleaved(twolame_options * glopts,
 
 /** Encode some 32-bit PCM audio to MP2.
  *
- *  Takes 32-bit floating point PCM audio samples from seperate
+ *  Takes 32-bit floating point PCM audio samples from separate
  *  left and right buffers and places encoded audio into mp2buffer.
  *
  *  Note: the 32-bit samples are currently scaled down to
@@ -263,7 +263,7 @@ TL_API int twolame_encode_buffer_float32(twolame_options * glopts,
  *  \return                The number of bytes put in output buffer
  *                         or a negative value on error
  */
-int twolame_encode_buffer_float32_interleaved(twolame_options * glopts,
+TL_API int twolame_encode_buffer_float32_interleaved(twolame_options * glopts,
         const float pcm[],
         int num_samples,
         unsigned char *mp2buffer, int mp2buffer_size);
@@ -448,7 +448,7 @@ TL_API int twolame_get_num_channels(twolame_options * glopts);
  *  \param scale           the amount to scale by
  *  \return                0 if successful, non-zero on failure
  */
-TL_API int twolame_set_scale(twolame_options * glopts, float scale);
+TL_API int twolame_set_scale(twolame_options * glopts, double scale);
 
 
 /** Get the scaling level for audio before encoding.
@@ -456,7 +456,7 @@ TL_API int twolame_set_scale(twolame_options * glopts, float scale);
  *  \param glopts          pointer to twolame options pointer
  *  \return                the amount to scale audio sample by
  */
-TL_API float twolame_get_scale(twolame_options * glopts);
+TL_API double twolame_get_scale(twolame_options * glopts);
 
 /** Set the scaling level for left channel audio before encoding.
  *
@@ -468,7 +468,7 @@ TL_API float twolame_get_scale(twolame_options * glopts);
  *  \param scale           the amount to scale by
  *  \return                0 if successful, non-zero on failure
  */
-TL_API int twolame_set_scale_left(twolame_options * glopts, float scale);
+TL_API int twolame_set_scale_left(twolame_options * glopts, double scale);
 
 
 /** Get the scaling level for audio left channel before encoding.
@@ -476,7 +476,7 @@ TL_API int twolame_set_scale_left(twolame_options * glopts, float scale);
  *  \param glopts          pointer to twolame options pointer
  *  \return                the amount to scale left channel audio samples by
  */
-TL_API float twolame_get_scale_left(twolame_options * glopts);
+TL_API double twolame_get_scale_left(twolame_options * glopts);
 
 
 /** Set the scaling level for right channel audio before encoding.
@@ -489,7 +489,7 @@ TL_API float twolame_get_scale_left(twolame_options * glopts);
  *  \param scale           the amount to scale by
  *  \return                0 if successful, non-zero on failure
  */
-TL_API int twolame_set_scale_right(twolame_options * glopts, float scale);
+TL_API int twolame_set_scale_right(twolame_options * glopts, double scale);
 
 
 /** Get the scaling level for audio right channel before encoding.
@@ -497,7 +497,7 @@ TL_API int twolame_set_scale_right(twolame_options * glopts, float scale);
  *  \param glopts          pointer to twolame options pointer
  *  \return                the amount to scale right channel audio samples by
  */
-TL_API float twolame_get_scale_right(twolame_options * glopts);
+TL_API double twolame_get_scale_right(twolame_options * glopts);
 
 
 /** Set the samplerate of the PCM audio input.
@@ -765,7 +765,7 @@ TL_API int twolame_get_VBR(twolame_options * glopts);
  *  \param level           quality level (-10 to 10)
  *  \return                0 if successful, non-zero on failure
  */
-TL_API int twolame_set_VBR_level(twolame_options * glopts, float level);
+TL_API int twolame_set_VBR_level(twolame_options * glopts, double level);
 
 
 /** Get the level/quality of the VBR audio.
@@ -773,7 +773,7 @@ TL_API int twolame_set_VBR_level(twolame_options * glopts, float level);
  *  \param glopts          pointer to twolame options pointer
  *  \return                quality value for VBR
  */
-TL_API float twolame_get_VBR_level(twolame_options * glopts);
+TL_API double twolame_get_VBR_level(twolame_options * glopts);
 
 
 
@@ -785,7 +785,7 @@ TL_API float twolame_get_VBR_level(twolame_options * glopts);
  *  \param level           adjustment level in db
  *  \return                0 if successful, non-zero on failure
  */
-TL_API int twolame_set_ATH_level(twolame_options * glopts, float level);
+TL_API int twolame_set_ATH_level(twolame_options * glopts, double level);
 
 
 /** Get the adjustment (in dB) applied to the ATH for Psycho models 3 and 4.
@@ -793,7 +793,7 @@ TL_API int twolame_set_ATH_level(twolame_options * glopts, float level);
  *  \param glopts          pointer to twolame options pointer
  *  \return                adjustment level in db
  */
-TL_API float twolame_get_ATH_level(twolame_options * glopts);
+TL_API double twolame_get_ATH_level(twolame_options * glopts);
 
 
 /** Set the upper bitrate for VBR

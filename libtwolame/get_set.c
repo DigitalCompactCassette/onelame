@@ -88,7 +88,7 @@ TL_API int twolame_get_num_channels(twolame_options * glopts)
     return (glopts->num_channels_in);
 }
 
-TL_API int twolame_set_scale(twolame_options * glopts, float scale)
+TL_API int twolame_set_scale(twolame_options * glopts, double scale)
 {
     if (scale < 0) {
         fprintf(stderr, "invalid scaling amount %f\n", scale);
@@ -98,12 +98,12 @@ TL_API int twolame_set_scale(twolame_options * glopts, float scale)
     return 0;
 }
 
-TL_API float twolame_get_scale(twolame_options * glopts)
+TL_API double twolame_get_scale(twolame_options * glopts)
 {
-    return (float)(glopts->scale);
+    return (glopts->scale);
 }
 
-TL_API int twolame_set_scale_left(twolame_options * glopts, float scale)
+TL_API int twolame_set_scale_left(twolame_options * glopts, double scale)
 {
     if (scale < 0) {
         fprintf(stderr, "invalid scaling amount %f\n", scale);
@@ -113,12 +113,12 @@ TL_API int twolame_set_scale_left(twolame_options * glopts, float scale)
     return 0;
 }
 
-TL_API float twolame_get_scale_left(twolame_options * glopts)
+TL_API double twolame_get_scale_left(twolame_options * glopts)
 {
-    return (float)(glopts->scale_left);
+    return (glopts->scale_left);
 }
 
-TL_API int twolame_set_scale_right(twolame_options * glopts, float scale)
+TL_API int twolame_set_scale_right(twolame_options * glopts, double scale)
 {
     if (scale < 0) {
         fprintf(stderr, "invalid scaling amount %f\n", scale);
@@ -128,9 +128,9 @@ TL_API int twolame_set_scale_right(twolame_options * glopts, float scale)
     return 0;
 }
 
-TL_API float twolame_get_scale_right(twolame_options * glopts)
+TL_API double twolame_get_scale_right(twolame_options * glopts)
 {
-    return (float)(glopts->scale_right);
+    return (glopts->scale_right);
 }
 
 
@@ -280,7 +280,7 @@ TL_API int twolame_get_VBR(twolame_options * glopts)
     return (glopts->vbr);
 }
 
-TL_API int twolame_set_VBR_level(twolame_options * glopts, float level)
+TL_API int twolame_set_VBR_level(twolame_options * glopts, double level)
 {
     // Limit is -50 to 50, but useful range is -10 to 10
     if (fabs(level) > 50.0)
@@ -290,20 +290,20 @@ TL_API int twolame_set_VBR_level(twolame_options * glopts, float level)
     return (0);
 }
 
-TL_API float twolame_get_VBR_level(twolame_options * glopts)
+TL_API double twolame_get_VBR_level(twolame_options * glopts)
 {
-    return (float)(glopts->vbrlevel);
+    return (glopts->vbrlevel);
 }
 
-TL_API int twolame_set_ATH_level(twolame_options * glopts, float level)
+TL_API int twolame_set_ATH_level(twolame_options * glopts, double level)
 {
     glopts->athlevel = level;
     return (0);
 }
 
-TL_API float twolame_get_ATH_level(twolame_options * glopts)
+TL_API double twolame_get_ATH_level(twolame_options * glopts)
 {
-    return (float)(glopts->athlevel);
+    return (glopts->athlevel);
 }
 
 TL_API int twolame_set_quick_mode(twolame_options * glopts, int quickmode)
