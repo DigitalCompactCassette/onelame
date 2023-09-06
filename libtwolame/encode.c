@@ -458,7 +458,7 @@ void twolame_write_header(twolame_options * glopts, bit_stream * bs)
     buffer_putbits(bs, 0xfff, 12);  /* syncword 12 bits */
     buffer_put1bit(bs, header->version);    /* ID 1 bit */
     buffer_putbits(bs, 4 - header->lay, 2); /* layer 2 bits */
-    buffer_put1bit(bs, !header->error_protection);  /* bit set => no err prot */
+    buffer_put1bit(bs, header->error_protection == 0);  /* bit set => no err prot */
     buffer_putbits(bs, header->bitrate_index, 4);
     buffer_putbits(bs, header->samplerate_idx, 2);
     buffer_put1bit(bs, header->padding);
