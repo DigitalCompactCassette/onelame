@@ -11,7 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\frontend\frontend.c" />
+    <ClCompile Include="..\frontend\frontend.c">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)..\libtwolame;$(SolutionDir)..\wingetopt\src;$(MSBuildProgramFiles32)\Mega-Nerd\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)..\libtwolame;$(SolutionDir)..\wingetopt\src;$(MSBuildProgramFiles32)\Mega-Nerd\libsndfile\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\wingetopt\src\getopt.c" />
   </ItemGroup>
   <ItemGroup>

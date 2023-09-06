@@ -58,7 +58,7 @@ char outputfilename[MAX_NAME_SIZE] = "\0";
   Puts a new extension name on a file name <filename>.
   Removes the last extension name, if any.
 */
-static void new_extension(char *filename, char *extname, char *newname)
+static void new_extension(const char *filename, const char *extname, char *newname)
 {
     int found, dotpos;
 
@@ -122,7 +122,7 @@ static char *format_filesize_string(char *string, int string_size, int filesize)
 */
 static void print_filenames(int verbosity)
 {
-    char *ifn, *ofn;
+    const char *ifn, *ofn;
 
     if (strcmp(inputfilename, "-") == 0)
         ifn = "STDIN";
